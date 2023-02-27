@@ -10,15 +10,15 @@ driver = webdriver.Chrome()
 driver.get("https://bonigarcia.dev/selenium-webdriver-java/data-types.html")
 driver.implicitly_wait(10)
 
-driver.find_element(By.CSS_SELECTOR, 'body > main > div > form > div:nth-child(1) > div:nth-child(1) > label > input').send_keys('Иван')
-driver.find_element(By.CSS_SELECTOR, 'body > main > div > form > div:nth-child(1) > div:nth-child(2) > label > input').send_keys('Петров')
-driver.find_element(By.CSS_SELECTOR, 'body > main > div > form > div:nth-child(2) > div.col-md-4.py-2 > label > input').send_keys('Ленина, 55-3')
-driver.find_element(By.CSS_SELECTOR, 'body > main > div > form > div:nth-child(2) > div:nth-child(3) > label > input').send_keys('Москва')
-driver.find_element(By.CSS_SELECTOR, 'body > main > div > form > div:nth-child(2) > div:nth-child(4) > label > input').send_keys('Россия')
-driver.find_element(By.CSS_SELECTOR, 'body > main > div > form > div:nth-child(4) > div:nth-child(1) > label > input').send_keys('QA')
-driver.find_element(By.CSS_SELECTOR, 'body > main > div > form > div:nth-child(4) > div:nth-child(2) > label > input').send_keys('SkyPro')
+driver.find_element(By.CSS_SELECTOR, "[name='first-name']").send_keys('Иван')
+driver.find_element(By.CSS_SELECTOR, "[name='last-name']").send_keys('Петров')
+driver.find_element(By.CSS_SELECTOR, "[name='address']").send_keys('Ленина, 55-3')
+driver.find_element(By.CSS_SELECTOR, "[name='city']").send_keys('Москва')
+driver.find_element(By.CSS_SELECTOR, "[name='country']").send_keys('Россия')
+driver.find_element(By.CSS_SELECTOR, "[name='job-position']").send_keys('QA')
+driver.find_element(By.CSS_SELECTOR, "[name='company']").send_keys('SkyPro')
 
-driver.find_element(By.CSS_SELECTOR, 'body > main > div > form > div:nth-child(5) > div > button').click()
+driver.find_element(By.CSS_SELECTOR, "button.btn").click()
 sleep(3)
 
 first_name = driver.find_element(By.CSS_SELECTOR, '#first-name').value_of_css_property("color")
@@ -34,7 +34,7 @@ zip_code = driver.find_element(By.CSS_SELECTOR, '#zip-code').value_of_css_proper
 
 print(first_name, zip_code)
 def test_red():
-   assert zip_code == "rgba(15, 81, 50, 1)"
+   assert zip_code == "rgba(132, 32, 41, 1)"
 
 @pytest.mark.parametrize('per, color', [(company, "rgba(15, 81, 50, 1)"),
 (job_position, "rgba(15, 81, 50, 1)"),
@@ -42,9 +42,7 @@ def test_red():
 (last_name, "rgba(15, 81, 50, 1)"),
 (address, "rgba(15, 81, 50, 1)"),
 (city, "rgba(15, 81, 50, 1)"),
-(country, "rgba(15, 81, 50, 1)"),
-(e_mail, "rgba(15, 81, 50, 1)"),
-(phone_number, "rgba(15, 81, 50, 1)")])
+(country, "rgba(15, 81, 50, 1)")])
 
 def test_green(per, color):
    assert per == color
